@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.termius.App</id>
+  <name>Termius</name>
+  <project_license>LicenseRef-proprietary</project_license>
+  <developer_name>Termius</developer_name>
+  <summary>Desktop Terminal App</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <launchable type="desktop-id">com.termius.App.desktop</launchable>
+  <url type="homepage">https://termius.com/</url>
+  <url type="help">https://termius.com/</url>
+  <description>
+    <p>Termius.</p>
+    <p>NOTE: This wrapper is not verified by, affiliated with, or supported by Termius.</p>
+  </description>
+  <categories>
+    <category>Network</category>
+  </categories>
+  <releases>
+    <release version="8.10.4" date="2024-03-26"/>
+  </releases>
+  <content_rating type="oars-1.1"/>
+</component>

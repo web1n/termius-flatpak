@@ -1,0 +1,78 @@
+id: com.termius.App
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+base: org.electronjs.Electron2.BaseApp
+base-version: '23.08'
+command: termius
+separate-locales: false
+
+finish-args:
+  - --share=network
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --socket=pulseaudio
+  - --device=all
+  - --socket=ssh-auth
+
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /man
+  - /share/doc
+  - /share/gtk-doc
+  - /share/man
+  - /share/pkgconfig
+  - '*.la'
+  - '*.a'
+
+modules:
+  - shared-modules/lzo/lzo.json
+  - shared-modules/squashfs-tools/squashfs-tools.json
+
+  - name: fontconfig
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 local.conf -t $FLATPAK_DEST/etc/fonts/
+      - install -Dm644 70-noto-cjk.conf -t $FLATPAK_DEST/etc/fonts/conf.d/
+    sources:
+      - type: file
+        path: local.conf
+      - type: file
+        url: https://gitlab.archlinux.org/archlinux/packaging/packages/noto-fonts-cjk/-/raw/5fd3534bf7a6e26c7506dc8f40dcd89f37d35627/70-noto-cjk.conf
+        sha256: 2417ac0e6720fe8da55ee59f16e36cfe96737bc21432460a322bb0f395e3a521
+
+  - name: termius-snap
+    buildsystem: simple
+    build-commands:
+      - unsquashfs termius.snap
+      - mkdir $FLATPAK_DEST/termius/
+      - mv squashfs-root/* $FLATPAK_DEST/termius/
+      - rm termius.snap
+    sources:
+      - type: file
+        url: https://api.snapcraft.io/api/v1/snaps/download/yyZzRdoyiRz3EM7iuvjhaIjDfnlFJcZs_306.snap
+        sha256: 008d1f49ecd7420032f0e4a6e23d5bfca4906d3d995e7c238c19ef45ee77b4ce
+        dest-filename: termius.snap
+        x-checker-data:
+          type: snapcraft
+          name: termius-beta
+          channel: stable
+
+  - name: termius
+    buildsystem: simple
+    build-commands:
+      - install -D termius.sh $FLATPAK_DEST/bin/termius
+      - install -Dm644 $FLATPAK_ID.metainfo.xml -t $FLATPAK_DEST/share/metainfo
+      - install -Dm644 $FLATPAK_ID.png -t $FLATPAK_DEST/share/icons/hicolor/512x512/apps
+      - install -Dm644 $FLATPAK_ID.desktop -t $FLATPAK_DEST/share/applications
+    sources:
+      - type: file
+        path: termius.sh
+      - type: file
+        path: com.termius.App.metainfo.xml
+      - type: file
+        path: com.termius.App.png
+      - type: file
+        path: com.termius.App.desktop

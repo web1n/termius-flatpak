@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Termius
+Exec=termius %U
+Terminal=false
+Type=Application
+Icon=com.termius.App
+StartupWMClass=termius beta
+Comment=Desktop SSH Client
+MimeType=x-scheme-handler/termius;
+Categories=Utility;
+SingleMainWindow=true
+X-GNOME-SingleWindow=true
+X-SingleMainWindow=true
