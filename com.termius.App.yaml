@@ -16,6 +16,7 @@ finish-args:
   - --device=all
   - --socket=ssh-auth
   - --talk-name=org.freedesktop.secrets
+  - --system-talk-name=org.bluez
 
 cleanup:
   - /include
