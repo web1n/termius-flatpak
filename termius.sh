@@ -23,4 +23,4 @@ if [[ -e "${XDG_RUNTIME_DIR}/${WL_DISPLAY}" || -e "/${WL_DISPLAY}" ]]; then
     fi
 fi
 
-exec zypak-wrapper.sh /app/termius/termius-beta "${EXTRA_ARGS[@]}" "$@"
+exec zypak-wrapper.sh /app/termius/termius-app "${EXTRA_ARGS[@]}" "$@"
