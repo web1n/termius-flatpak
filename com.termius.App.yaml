@@ -54,8 +54,8 @@ modules:
       - rm termius.snap
     sources:
       - type: file
-        url: https://api.snapcraft.io/api/v1/snaps/download/WkTBXwoX81rBe3s3OTt3EiiLKBx2QhuS_185.snap
-        sha256: b199c089742f237573185e6d4085217e20ebeed4698204dc436b8dc2198920a1
+        url: https://api.snapcraft.io/api/v1/snaps/download/WkTBXwoX81rBe3s3OTt3EiiLKBx2QhuS_186.snap
+        sha256: b50658efa0d3b0577e87c127864ad1fec68edacfd9098f772fb09085dac33292
         dest-filename: termius.snap
         x-checker-data:
           type: snapcraft
